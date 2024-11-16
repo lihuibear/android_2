@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/phoneItem"
+        android:title="拨打电话"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/delete_Item"
+        android:title="删除"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/update_Item"
+        android:title="修改"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/send_Item"
+        android:title="发送短信"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/LOOK_Item"
+        android:title="查看联系人"
+        app:showAsAction="never"
+        ></item>
+</menu>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PhoneContacts</string>
+    <string name="tv_name">姓名:</string>
+    <string name="tv_phone">手机号:</string>
+    <string name="tv_unit">单位名称:</string>
+    <string name="tv_email">Email:</string>
+    <string name="tv_address">家庭地址:</string>
+    <string name="tv_QQ">QQ号码:</string>
+    <string name="btn_button">保存联系人:</string>
+</resources>
