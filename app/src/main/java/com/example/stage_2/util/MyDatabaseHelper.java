@@ -7,17 +7,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 
 /**
  * 创建一个数据库类继承
  * 通过创建子类MyDatabaseHelper继承SQLiteOpenHelper类，实现它的一些方法来对数据库进行操作。
- * 变量用常量表示规范，常量一般大写
  */
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
-    private Context context;
-    private static final String DATABASE_NAME = "phone_contacts.db";//定义一个常量名命这个数据库为phone db是一个扩展;
+    private static final String DATABASE_NAME = "stage_2.db";
     private static final int DATABASE_VERSION = 1;//定义一个数据库版本，是一个整数类型；
     private static final String TABLE_NAME = "contact";//定义一个表名;
     //需要定义标题
@@ -28,6 +27,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String CONTACT_UNIT = "phone_unit";//单位名称
     private static final String CONTACT_EMAIL = "phone_email";//Email
     private static final String CONTACT_QQ = "phone_qq";//QQ号码
+    private Context context;
 
     /*
     构造函数
@@ -97,7 +97,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateData(String id,String name, String phone, String address, String unit, String email, String qq) {
+    public void updateData(String id, String name, String phone, String address, String unit, String email, String qq) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(CONTACT_NAME, name);
@@ -107,7 +107,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(CONTACT_EMAIL, email);
         cv.put(CONTACT_QQ, qq);
 
-        long result = db.update(TABLE_NAME, cv, CONTACT_ID+"=?", new String[]{id});
+        long result = db.update(TABLE_NAME, cv, CONTACT_ID + "=?", new String[]{id});
         Log.i("resultde是", String.valueOf(result));
         if (result == -1) {
             Toast.makeText(context, "保存失败", Toast.LENGTH_SHORT).show();
@@ -116,27 +116,29 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteOneRow(String row_id){
+    public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        long result=db.delete(TABLE_NAME,"phone_id=?",new String[]{row_id});
-        if (result == -1){
+        long result = db.delete(TABLE_NAME, "phone_id=?", new String[]{row_id});
+        if (result == -1) {
             Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "删除成功！", Toast.LENGTH_SHORT).show();
         }
     }
-    public void deleteAllData(){
+
+    public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " +TABLE_NAME);
+        db.execSQL("DELETE FROM " + TABLE_NAME);
     }
+
     //查询
-    public Cursor queryUser(String keyword){
+    public Cursor queryUser(String keyword) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " +
                 CONTACT_NAME + " LIKE '%" + keyword + "%' OR " +
                 CONTACT_PHONE + " LIKE '%" + keyword + "%'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = null;
-        if(db != null) {
+        if (db != null) {
             cursor = db.rawQuery(query, null);
         }
         return cursor;

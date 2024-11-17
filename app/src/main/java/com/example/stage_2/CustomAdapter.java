@@ -97,13 +97,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         //创建一个对象
         final PopupMenu popupMenu = new PopupMenu(context, v);
         //设置布局
-        popupMenu.getMenuInflater().inflate(R.menu.my_menu1, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.my_menu, popupMenu.getMenu());
         //设置点击事件
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Toast.makeText(context, "你点击了:" + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-//                当你点击拨打电话，跳转拨打电话
+                //点击拨打电话，跳转拨打电话
                 if (menuItem.getTitle().equals("拨打电话")) {
                     Toast.makeText(context, "你点击了拨打电话:" + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Intent.ACTION_DIAL);
