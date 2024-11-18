@@ -1,15 +1,15 @@
 package com.example.stage_2;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.stage_2.util.MyDatabaseHelper;
 
@@ -55,9 +55,7 @@ public class UpdataActivity extends AppCompatActivity {
     }
 
     public void getAndSetIntentData() {
-        if (getIntent().hasExtra("name") && getIntent().hasExtra("phone")
-                && getIntent().hasExtra("address") && getIntent().hasExtra("unit")
-                && getIntent().hasExtra("email") && getIntent().hasExtra("qq")) {
+        if (getIntent().hasExtra("name") && getIntent().hasExtra("phone") && getIntent().hasExtra("address") && getIntent().hasExtra("unit") && getIntent().hasExtra("email") && getIntent().hasExtra("qq")) {
             id = getIntent().getStringExtra("id");
             name = getIntent().getStringExtra("name");
             phone = getIntent().getStringExtra("phone");

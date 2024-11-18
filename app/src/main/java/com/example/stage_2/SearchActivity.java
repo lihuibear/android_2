@@ -1,24 +1,26 @@
 package com.example.stage_2;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SearchActivity extends AppCompatActivity {
 
     TextView pt_name2, pt_phone2, pt_address2, pt_unit2, pt_email2, pt_qq2;
     String id, name, phone, address, unit, email, qq;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        pt_name2= findViewById(R.id.pt_name2);
-        pt_phone2= findViewById(R.id.pt_phone2);
-        pt_address2= findViewById(R.id.pt_address2);
-        pt_unit2= findViewById(R.id.pt_unit2);
-        pt_email2= findViewById(R.id.pt_email2);
-        pt_qq2= findViewById(R.id.pt_qq2);
+        pt_name2 = findViewById(R.id.pt_name2);
+        pt_phone2 = findViewById(R.id.pt_phone2);
+        pt_address2 = findViewById(R.id.pt_address2);
+        pt_unit2 = findViewById(R.id.pt_unit2);
+        pt_email2 = findViewById(R.id.pt_email2);
+        pt_qq2 = findViewById(R.id.pt_qq2);
         getAndSetIntentData();
     }
 
