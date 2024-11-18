@@ -5,26 +5,22 @@
     <item
         android:id="@+id/phoneItem"
         android:title="拨打电话"
-        app:showAsAction="never"
-        ></item>
+        app:showAsAction="never"></item>
     <item
         android:id="@+id/delete_Item"
+        android:icon="@drawable/ic_delete"
         android:title="删除"
-        app:showAsAction="never"
-        ></item>
+        app:showAsAction="never"></item>
     <item
         android:id="@+id/update_Item"
         android:title="修改"
-        app:showAsAction="never"
-        ></item>
+        app:showAsAction="never"></item>
     <item
         android:id="@+id/send_Item"
         android:title="发送短信"
-        app:showAsAction="never"
-        ></item>
+        app:showAsAction="never"></item>
     <item
         android:id="@+id/LOOK_Item"
         android:title="查看联系人"
-        app:showAsAction="never"
-        ></item>
+        app:showAsAction="never"></item>
 </menu>

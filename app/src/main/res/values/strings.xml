@@ -6,5 +6,7 @@
     <string name="tv_email">Email:</string>
     <string name="tv_address">家庭地址:</string>
     <string name="tv_QQ">QQ号码:</string>
-    <string name="btn_button">保存联系人:</string>
+    <string name="btn_button">保存联系人</string>
 </resources>
+
+

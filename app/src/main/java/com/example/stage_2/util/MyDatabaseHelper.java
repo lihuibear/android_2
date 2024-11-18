@@ -69,7 +69,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     //创建一个添加方法addPhone()
     //将创建SQLite数据库对象，这样只需要名命该数据库，使用一个关键字，指向SQLite开放式帮助类
     //helper类，获取可写入的数据库
-    public void addPhone(String name, String phone, String address, String unit, String email, String qq) {
+    public long addPhone(String name, String phone, String address, String unit, String email, String qq) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(CONTACT_NAME, name);
@@ -78,13 +78,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(CONTACT_UNIT, unit);
         cv.put(CONTACT_EMAIL, email);
         cv.put(CONTACT_QQ, qq);
-        long result = db.insert(TABLE_NAME, null, cv);
-        if (result == -1) {
-            Toast.makeText(context, "保存失败", Toast.LENGTH_SHORT).show();
 
-        } else {
-            Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
+        long result = -1;
+        try {
+            result = db.insert(TABLE_NAME, null, cv);
+        } catch (Exception e) {
+            e.printStackTrace(); // 打印异常信息
+        } finally {
+            db.close(); // 确保数据库在操作后关闭
         }
+
+        return result; // 返回插入的行 ID 或 -1
     }
 
     public Cursor readAllData() {
@@ -97,7 +101,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateData(String id, String name, String phone, String address, String unit, String email, String qq) {
+    public long updateData(String id, String name, String phone, String address, String unit, String email, String qq) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(CONTACT_NAME, name);
@@ -107,14 +111,19 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(CONTACT_EMAIL, email);
         cv.put(CONTACT_QQ, qq);
 
-        long result = db.update(TABLE_NAME, cv, CONTACT_ID + "=?", new String[]{id});
-        Log.i("resultde是", String.valueOf(result));
-        if (result == -1) {
-            Toast.makeText(context, "保存失败", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
+        long result = -1;
+        try {
+            result = db.update(TABLE_NAME, cv, CONTACT_ID + "=?", new String[]{id});
+            Log.i("UpdateResult", "Update result for ID " + id + ": " + result);
+        } catch (Exception e) {
+            Log.e("DatabaseError", "Error updating data: " + e.getMessage());
+        } finally {
+            db.close(); // 确保数据库在操作后关闭
         }
+
+        return result; // 返回更新的行数或 -1
     }
+
 
     public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -128,7 +137,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME);
+        try {
+            Log.d("DatabaseHelper", "Deleting all data from " + TABLE_NAME);
+            db.execSQL("DELETE FROM " + TABLE_NAME);
+            Toast.makeText(context, "All data deleted successfully!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("DatabaseError", "Error deleting all data: " + e.getMessage());
+        } finally {
+            db.close(); // 确保数据库在操作后关闭
+        }
     }
 
     //查询
