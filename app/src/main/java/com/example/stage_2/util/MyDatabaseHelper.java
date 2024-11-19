@@ -10,10 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-/**
- * 创建一个数据库类继承
- * 通过创建子类MyDatabaseHelper继承SQLiteOpenHelper类，实现它的一些方法来对数据库进行操作。
- */
+
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "stage_2.db";
@@ -29,21 +26,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String CONTACT_QQ = "phone_qq";//QQ号码
     private Context context;
 
-    /*
-    构造函数
-    要传上下文和名字以及工厂还有一个版本，
-     */
+
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
 
-    /*
-    第一次创建数据库的时候使用回调方法
-    数据出第一次创建的时候才会被调用，其他时候不会再调用了，只调用一次
-    创建contact表
-    id,name,phone,address,unit,,email,qq;
-     */
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         //创建数据表
@@ -66,9 +55,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //创建一个添加方法addPhone()
-    //将创建SQLite数据库对象，这样只需要名命该数据库，使用一个关键字，指向SQLite开放式帮助类
-    //helper类，获取可写入的数据库
+
     public long addPhone(String name, String phone, String address, String unit, String email, String qq) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -124,7 +111,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return result; // 返回更新的行数或 -1
     }
 
-
     public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "phone_id=?", new String[]{row_id});
@@ -132,19 +118,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "删除成功！", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void deleteAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        try {
-            Log.d("DatabaseHelper", "Deleting all data from " + TABLE_NAME);
-            db.execSQL("DELETE FROM " + TABLE_NAME);
-            Toast.makeText(context, "All data deleted successfully!", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.e("DatabaseError", "Error deleting all data: " + e.getMessage());
-        } finally {
-            db.close(); // 确保数据库在操作后关闭
         }
     }
 

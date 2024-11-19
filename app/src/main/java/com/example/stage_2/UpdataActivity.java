@@ -107,7 +107,7 @@ public class UpdataActivity extends AppCompatActivity {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdataActivity.this);
                 myDB.deleteOneRow(id);
                 Toast.makeText(UpdataActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
-                finish(); // 返回到前一个活动
+                finish();
             }
         });
         builder.setNegativeButton("否", null);

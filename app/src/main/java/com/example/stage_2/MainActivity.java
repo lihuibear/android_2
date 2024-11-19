@@ -91,35 +91,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == R.id.delete_all) {
-//            confiormDialog();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    void confiormDialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("删除所有信息?");
-//        builder.setMessage("确认要删除所有信息?");
-//        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                myDB.deleteAllData();
-//                Toast.makeText(MainActivity.this, "所有数据已删除", Toast.LENGTH_SHORT).show();
-//                displayData(""); // 刷新数据
-//            }
-//        });
-//        builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                // 取消对话框
-//            }
-//        });
-//        builder.create().show();
-//    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 phone_qq.add(cursor.getString(6));
             }
         }
-        // 通知适配器数据已更改
+
 
     }
 }
